@@ -1,5 +1,8 @@
 import React from "react";
 import { motion } from "framer-motion";
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import BannerProduct from "../assets/images/bannerproduct.gif";
 
@@ -12,6 +15,16 @@ const Banner = () => {
   const contentVariants = {
     hidden: { opacity: 0, x: -100 },
     visible: { opacity: 1, x: 0, transition: { delay: 0.5, duration: 1 } },
+  };
+
+  const settings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 3000,
   };
 
   return (
@@ -71,7 +84,17 @@ const Banner = () => {
           </button>
         </motion.div>
         <motion.div className="col-md-6" variants={contentVariants}>
-          <img src={BannerProduct} alt="Banner" className="img-fluid" />
+          <Slider {...settings}>
+            <div>
+              <img src={BannerProduct} alt="Banner 1" className="img-fluid" />
+            </div>
+            <div>
+              <img src={BannerProduct} alt="Banner 2" className="img-fluid" />
+            </div>
+            <div>
+              <img src={BannerProduct} alt="Banner 3" className="img-fluid" />
+            </div>
+          </Slider>
         </motion.div>
       </motion.div>
     </div>

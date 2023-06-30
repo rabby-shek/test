@@ -7,7 +7,7 @@ import { styled } from "@mui/material/styles";
 import IconButton from "@mui/material/IconButton";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import Logo from '../assets/images/shopping-logo.svg'
-
+import { useNavigate } from "react-router-dom";
 const StyledBadge = styled(Badge)(({ theme }) => ({
   "& .MuiBadge-badge": {
     right: -3,
@@ -20,7 +20,7 @@ const StyledBadge = styled(Badge)(({ theme }) => ({
 
 const TopNav = () => {
   const [showNavbar, setShowNavbar] = useState(false);
-
+   let navigate = useNavigate();
   const handleshownavbar = () => {
     setShowNavbar(!showNavbar);
   };
@@ -44,7 +44,7 @@ const TopNav = () => {
                 <NavLink to="/about" onClick={handleshownavbar}>About</NavLink>
               </li>
               <li>
-                <NavLink to="/product"onClick={handleshownavbar}>Products</NavLink>
+                <NavLink to="/product"onClick={handleshownavbar}>Shop</NavLink>
               </li>
               <li>
                 <NavLink to="/contact" onClick={handleshownavbar}>Contact</NavLink>
@@ -53,7 +53,7 @@ const TopNav = () => {
           </div>
           <div className="cart">
           <button className="login-button">Login</button>
-            <IconButton aria-label="cart">
+            <IconButton aria-label="cart" onClick={()=>navigate("/cart")}>
               <StyledBadge badgeContent={1} color="success">
                 <ShoppingCartIcon />
               </StyledBadge>

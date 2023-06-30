@@ -4,8 +4,10 @@ import '../../assets/css/products.css';
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 
 const ProductCard = ({ image, description, title, price }) => {
+  const [discount] = useState(10);
   return (
     <a className="product-card" href="#dolce-gabbana-cropped">
+     {discount > 0 && <span className="product-card__discount">-{discount}%</span>}
       <img className="product-card__image" src={image} alt={title} />
       <p className="product-card__brand">{title}</p>
       <p className="product-card__description">{description}</p>
@@ -16,27 +18,9 @@ const ProductCard = ({ image, description, title, price }) => {
     </a>
   );
 };
-const loadMoreButtonStyles = {
-  display: 'flex',
-  justifyContent: 'center',
-  marginTop: '20px',
-};
-
-const buttonStyles = {
-  padding: '10px 20px',
-  backgroundColor: '#ff5a5f',
-  color: '#fff',
-  border: 'none',
-  borderRadius: '4px',
-  cursor: 'pointer',
-  fontSize: '16px',
-  fontWeight: 'bold',
-  textTransform: 'uppercase',
-  transition: 'background-color 0.3s',
-};
 
 const OurProducts = () => {
-  const initialProductCount = 6; // Initial number of products to show
+  const initialProductCount = 4; // Initial number of products to show
   const [visibleProductCount, setVisibleProductCount] = useState(initialProductCount);
   const [gridColumns, setGridColumns] = useState(6); // Initial grid columns for large screens
 
@@ -46,6 +30,7 @@ const OurProducts = () => {
       description: 'Description for Product 1',
       price: 19.99,
       image: 'https://p.turbosquid.com/ts-thumb/b3/U6DGLq/Zt/preview/jpg/1622357951/300x300/sharp_fit_q85/e16ffb8b1b84b575ba09e2565181062bc4eb94eb/preview.jpg',
+      discount :  28
     },
     {
       title: 'watch',
@@ -81,23 +66,60 @@ const OurProducts = () => {
         title: 'Product 2',
         description: 'Description for Product 2',
         price: 24.99,
-        image: 'product2.jpg',
+        image: 'https://fullspectrum3d.com/wp-content/uploads/2019/12/Table.gif',
       },
       {
         title: 'Product 2',
         description: 'Description for Product 2',
         price: 24.99,
-        image: 'product2.jpg',
+        image: 'https://fullspectrum3d.com/wp-content/uploads/2019/12/Table.gif',
       },
       {
         title: 'Product 2',
         description: 'Description for Product 2',
         price: 24.99,
-        image: 'product2.jpg',
+        image: 'https://fullspectrum3d.com/wp-content/uploads/2019/12/Table.gif',
       },
+      {
+        title: 'Product 2',
+        description: 'Description for Product 2',
+        price: 24.99,
+        image: 'https://fullspectrum3d.com/wp-content/uploads/2019/12/Table.gif',
+      },
+      {
+        title: 'Product 2',
+        description: 'Description for Product 2',
+        price: 24.99,
+        image: 'https://fullspectrum3d.com/wp-content/uploads/2019/12/Table.gif',
+      },
+      {
+        title: 'Product 2',
+        description: 'Description for Product 2',
+        price: 24.99,
+        image: 'https://fullspectrum3d.com/wp-content/uploads/2019/12/Table.gif',
+      },
+      
     // ... rest of the products
-    
   ];
+
+  const loadMoreButtonStyles = {
+    display: 'flex',
+    justifyContent: 'center',
+    marginTop: '20px',
+  };
+  
+  const buttonStyles = {
+    padding: '10px 20px',
+    backgroundColor: '#79B259',
+    color: '#fff',
+    border: 'none',
+    borderRadius: '4px',
+    cursor: 'pointer',
+    fontSize: '16px',
+    fontWeight: 'bold',
+    textTransform: 'uppercase',
+    transition: 'background-color 0.3s',
+  };
 
   const handleLoadMore = () => {
     setVisibleProductCount(visibleProductCount + 3); // Increase the number of visible products by 3
@@ -112,11 +134,14 @@ const OurProducts = () => {
     const handleResize = () => {
       const screenWidth = window.innerWidth;
       if (screenWidth >= 1200) {
-        setGridColumns(6); // Large screens (>= 1200px) - 6 columns
+        setGridColumns(4); // Large screens (>= 1200px) - 6 columns
       } else if (screenWidth >= 992) {
-        setGridColumns(4); // Medium screens (992px - 1199px) - 4 columns
-      } else {
+        setGridColumns(3); // Medium screens (992px - 1199px) - 4 columns
+      } else if(screenWidth >= 768){
         setGridColumns(2); // Small screens (< 992px) - 3 columns
+      }
+      else{
+        setGridColumns(1);
       }
     };
 
